@@ -45,7 +45,7 @@ This project is built with modern web technologies:
 1. **Clone the repository**
    ```sh
    git clone <repository-url>
-   cd tanzanian-safari-journeys
+   cd deerparktourstz
    ```
 
 2. **Install dependencies**
