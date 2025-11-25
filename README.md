@@ -1,4 +1,4 @@
-# Tanzanian Safari Journeys
+# DeerParkTours
 
 **A Premium Safari Experience Platform**
 
