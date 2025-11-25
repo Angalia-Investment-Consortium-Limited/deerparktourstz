@@ -1,0 +1,196 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* DeerPark Tours Design System - Inspired by Tanzanian landscapes and safari adventures */
+
+@layer base {
+  :root {
+    /* Brand Colors - Custom Color Palette */
+    --primary: 202 53% 36%; /* #2A678C - Deep blue */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 202 53% 50%; /* Lighter variant of primary */
+    
+    --secondary: 157 97% 33%; /* #03A66A - Vibrant green */
+    --secondary-foreground: 0 0% 100%;
+    
+    --accent: 36 89% 53%; /* #F2911B - Bright orange */
+    --accent-foreground: 0 0% 100%;
+    
+    --tertiary: 36 79% 71%; /* #F2BB77 - Light orange/peach */
+    --tertiary-foreground: 30 8% 15%;
+    
+    /* Neutral Colors */
+    --background: 0 0% 95%; /* #F2F2F2 - Light gray */
+    --foreground: 202 53% 20%; /* Darker variant of primary for text */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 30 8% 15%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 8% 15%;
+    
+    --muted: 36 79% 85%; /* Light version of warm orange */
+    --muted-foreground: 202 53% 45%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    
+    --border: 36 79% 88%; /* Light warm orange border */
+    --input: 36 79% 88%;
+    --ring: 202 53% 36%;
+    
+    /* Custom Gradients */
+    --gradient-safari: linear-gradient(135deg, hsl(202 53% 36%), hsl(157 97% 33%));
+    --gradient-sunset: linear-gradient(180deg, hsl(36 89% 53%), hsl(36 79% 71%));
+    --gradient-warm: linear-gradient(135deg, hsl(36 89% 53%), hsl(36 79% 71%));
+    --gradient-hero: linear-gradient(135deg, hsl(202 53% 36% / 0.9), hsl(157 97% 33% / 0.8));
+    
+    /* Shadows */
+    --shadow-safari: 0 20px 40px -12px hsl(202 53% 36% / 0.25);
+    --shadow-card: 0 4px 20px -4px hsl(202 53% 20% / 0.1);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+
+  /* Typography hierarchy */
+  .heading-display {
+    @apply font-playfair font-bold tracking-tight;
+  }
+  
+  .heading-primary {
+    @apply font-playfair font-semibold tracking-tight;
+  }
+  
+  .heading-secondary {
+    @apply font-playfair font-medium tracking-wide;
+  }
+  
+  .body-large {
+    @apply font-inter font-normal tracking-normal;
+  }
+  
+  .body-medium {
+    @apply font-inter font-normal tracking-normal text-sm;
+  }
+
+  /* Scroll animations */
+  .scroll-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .scroll-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .scroll-slide-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .scroll-slide-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .scroll-slide-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .scroll-slide-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* Nature-inspired animations */
+  .gentle-float {
+    animation: gentle-float 4s ease-in-out infinite;
+  }
+  
+  @keyframes gentle-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(1deg); }
+  }
+  
+  .leaf-sway {
+    animation: leaf-sway 6s ease-in-out infinite;
+  }
+  
+  @keyframes leaf-sway {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+}
