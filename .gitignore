@@ -16,9 +16,20 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# macOS metadata files
+._*
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+Thumbs.db
+
+# Windows metadata
+desktop.ini
