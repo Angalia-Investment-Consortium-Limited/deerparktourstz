@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
@@ -45,8 +44,16 @@ const Navbar = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20 py-2">
           {/* Logo */}
-          <Link to="/" className="flex items-center hover:opacity-90 transition-all duration-300 hover:scale-105">
-            <Logo variant="icon" size="3xl" showText={false} className="w-32 h-32 md:w-36 md:h-36 drop-shadow-xl filter contrast-125 brightness-110" />
+          <Link
+            to="/"
+            className="flex items-center hover:opacity-90 transition-all duration-300 hover:scale-105"
+          >
+            <Logo
+              variant="icon"
+              size="xl"
+              showText={false}
+              className="w-32 h-32 md:w-36 md:h-36 drop-shadow-xl filter contrast-125 brightness-110"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -56,15 +63,20 @@ const Navbar = () => {
                 key={item.name}
                 to={item.path}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.path) 
-                    ? "text-primary border-b-2 border-primary" 
+                  isActive(item.path)
+                    ? "text-primary border-b-2 border-primary"
                     : "text-muted-foreground"
                 }`}
               >
                 {item.name}
               </Link>
             ))}
-            <Button variant="default" size="sm" className="bg-safari-gradient" asChild>
+            <Button
+              variant="default"
+              size="sm"
+              className="bg-safari-gradient"
+              asChild
+            >
               <Link to="/contact">Book Now</Link>
             </Button>
           </div>
@@ -91,7 +103,9 @@ const Navbar = () => {
                   key={item.name}
                   to={item.path}
                   className={`px-4 py-2 text-sm font-medium transition-colors hover:text-primary ${
-                    isActive(item.path) ? "text-primary bg-muted" : "text-muted-foreground"
+                    isActive(item.path)
+                      ? "text-primary bg-muted"
+                      : "text-muted-foreground"
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -99,7 +113,12 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="px-4 pt-2">
-                <Button variant="default" size="sm" className="w-full bg-safari-gradient" asChild>
+                <Button
+                  variant="default"
+                  size="sm"
+                  className="w-full bg-safari-gradient"
+                  asChild
+                >
                   <Link to="/contact">Book Now</Link>
                 </Button>
               </div>
