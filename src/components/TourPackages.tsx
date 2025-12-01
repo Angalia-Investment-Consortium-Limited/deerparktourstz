@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -22,6 +22,7 @@ import {
 
 const TourPackages = () => {
   const [selectedUserType, setSelectedUserType] = useState("all");
+  const navigate = useNavigate();
 
   const userTypes = [
     { id: "all", label: "All Packages", icon: Filter },
@@ -364,7 +365,8 @@ const TourPackages = () => {
                     }`}
                     onClick={() => {
                       // Navigate to contact page with pre-selected user type and package
-                      window.location.href = `/contact?userType=${selectedUserType}&package=${pkg.id}`;
+                      // window.location.href = `/contact?userType=${selectedUserType}&package=${pkg.id}`;
+                      navigate("/contact");
                     }}
                   >
                     {selectedUserType === "agents"
