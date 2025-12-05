@@ -5,6 +5,7 @@ This guide covers the deployment of both the frontend React application and the 
 ## 📋 Project Overview
 
 The project consists of:
+
 - **Frontend**: React application with TypeScript and Tailwind CSS
 - **Backend**: Strapi CMS for content management
 - **Forms**: PHP handlers for contact and inquiry forms (cPanel compatible)
@@ -14,11 +15,13 @@ The project consists of:
 ### Build for Production
 
 1. **Install Dependencies**
+
    ```bash
    npm install
    ```
 
 2. **Build the Application**
+
    ```bash
    npm run build
    ```
@@ -30,6 +33,7 @@ The project consists of:
 ### Environment Configuration
 
 Create a `.env.production` file:
+
 ```env
 VITE_STRAPI_URL=https://yourdomain.com/strapi
 VITE_API_URL=https://yourdomain.com/api
@@ -40,10 +44,12 @@ VITE_API_URL=https://yourdomain.com/api
 ### cPanel Deployment
 
 1. **Database Setup**
+
    - Create a MySQL database in cPanel
    - Note the database name, username, and password
 
 2. **File Upload**
+
    ```bash
    cd strapi-backend
    # Remove development files
@@ -53,6 +59,7 @@ VITE_API_URL=https://yourdomain.com/api
 
 3. **Environment Configuration**
    Create `.env` file in the strapi directory:
+
    ```env
    HOST=0.0.0.0
    PORT=1337
@@ -61,7 +68,7 @@ VITE_API_URL=https://yourdomain.com/api
    ADMIN_JWT_SECRET=your-admin-jwt-secret
    TRANSFER_TOKEN_SALT=your-transfer-token-salt
    JWT_SECRET=your-jwt-secret
-   
+
    # Database
    DATABASE_CLIENT=mysql
    DATABASE_HOST=localhost
@@ -70,12 +77,13 @@ VITE_API_URL=https://yourdomain.com/api
    DATABASE_USERNAME=your_database_user
    DATABASE_PASSWORD=your_database_password
    DATABASE_SSL=false
-   
+
    # Frontend URL
    FRONTEND_URL=https://yourdomain.com
    ```
 
 4. **Install Dependencies and Build**
+
    ```bash
    npm install --production
    npm run build
@@ -98,11 +106,13 @@ VITE_API_URL=https://yourdomain.com/api
 ### Upload PHP Files
 
 1. **Create Forms Directory**
+
    ```bash
    mkdir php-forms
    ```
 
 2. **Upload PHP Files**
+
    - Upload `contact-handler.php` and `inquiry-handler.php` to `/php-forms/`
    - Ensure PHP files have proper permissions (644)
 
@@ -119,14 +129,14 @@ Update your React components to use the PHP endpoints:
 ```javascript
 // In your contact form component
 const handleSubmit = async (formData) => {
-  const response = await fetch('/php-forms/contact-handler.php', {
-    method: 'POST',
+  const response = await fetch("/php-forms/contact-handler.php", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(formData),
   });
-  
+
   const result = await response.json();
   // Handle response
 };
@@ -137,6 +147,7 @@ const handleSubmit = async (formData) => {
 ### .htaccess for React Router
 
 Create `.htaccess` in your public_html:
+
 ```apache
 Options -MultiViews
 RewriteEngine On
@@ -158,6 +169,7 @@ Header always set X-XSS-Protection "1; mode=block"
 ### Strapi .htaccess
 
 Create `.htaccess` in your strapi directory:
+
 ```apache
 # Redirect HTTP to HTTPS
 RewriteEngine On
@@ -172,16 +184,19 @@ Header always set X-Frame-Options SAMEORIGIN
 ## 🔐 Security Considerations
 
 ### SSL Certificate
+
 - Install SSL certificate for your domain
 - Update all URLs to use HTTPS
 - Configure HSTS headers
 
 ### Database Security
+
 - Use strong database passwords
 - Limit database user permissions
 - Regular database backups
 
 ### API Security
+
 - Generate strong JWT secrets
 - Configure proper CORS origins
 - Use API rate limiting
@@ -189,12 +204,14 @@ Header always set X-Frame-Options SAMEORIGIN
 ## 📊 Performance Optimization
 
 ### Frontend
+
 - Enable Gzip compression
 - Optimize images (WebP format)
 - Use CDN for static assets
 - Implement lazy loading
 
 ### Backend
+
 - Configure database connection pooling
 - Enable Redis caching (if available)
 - Optimize database queries
@@ -203,6 +220,7 @@ Header always set X-Frame-Options SAMEORIGIN
 ## 🔍 Testing Deployment
 
 ### Frontend Testing
+
 1. Check all pages load correctly
 2. Test navigation and routing
 3. Verify form submissions
@@ -210,12 +228,14 @@ Header always set X-Frame-Options SAMEORIGIN
 5. Check console for errors
 
 ### Backend Testing
+
 1. Access admin panel: `https://yourdomain.com/strapi/admin`
 2. Test API endpoints: `https://yourdomain.com/strapi/api/blog-posts`
 3. Verify CORS configuration
 4. Test content creation and updates
 
 ### Forms Testing
+
 1. Test contact form submission
 2. Test inquiry form submission
 3. Verify email delivery
@@ -224,17 +244,20 @@ Header always set X-Frame-Options SAMEORIGIN
 ## 📈 Monitoring and Maintenance
 
 ### Log Files
+
 - Monitor PHP error logs
 - Check Strapi application logs
 - Review web server access logs
 
 ### Regular Tasks
+
 - Update Strapi and dependencies
 - Database backups
 - Security updates
 - Content moderation
 
 ### Performance Monitoring
+
 - Page load times
 - API response times
 - Database query performance
@@ -245,26 +268,31 @@ Header always set X-Frame-Options SAMEORIGIN
 ### Common Issues
 
 **Frontend not loading:**
+
 - Check .htaccess configuration
 - Verify file permissions
 - Check browser console for errors
 
 **Strapi not starting:**
+
 - Check database connection
 - Verify environment variables
 - Check Node.js version compatibility
 
 **Forms not working:**
+
 - Check PHP error logs
 - Verify email server configuration
 - Test CORS headers
 
 **API calls failing:**
+
 - Check CORS configuration
 - Verify API endpoints
 - Check authentication tokens
 
 ### Support Resources
+
 - [Strapi Documentation](https://docs.strapi.io/)
 - [React Documentation](https://reactjs.org/docs/)
 - [cPanel Documentation](https://docs.cpanel.net/)
@@ -286,15 +314,18 @@ Header always set X-Frame-Options SAMEORIGIN
 ## 🎯 Go Live Steps
 
 1. **Final Testing**
+
    - Complete functionality test
    - Cross-browser testing
    - Mobile responsiveness check
 
 2. **DNS Configuration**
+
    - Point domain to hosting server
    - Configure subdomains if needed
 
 3. **Launch**
+
    - Monitor for first 24 hours
    - Check error logs
    - Verify all functionality
