@@ -8,6 +8,7 @@ import {
   MapPin,
 } from "lucide-react";
 import Logo from "@/components/ui/logo";
+import deerparklogo from "../../public/lovable-uploads/DeerParkLogo.png";
 
 const Footer = () => {
   return (
@@ -16,11 +17,10 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <Logo
-              variant="full"
-              size="xl"
-              showText={true}
-              className="w-32 h-32 md:w-36 md:h-36 drop-shadow-xl filter contrast-125 brightness-110"
+            <img
+              src={deerparklogo}
+              alt="deerpark logo"
+              className="h-28 w-28 transition-transform duration-300 hover:scale-105"
             />
             {/* <Logo
               variant="full"

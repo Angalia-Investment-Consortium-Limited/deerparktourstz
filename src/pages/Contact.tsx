@@ -76,7 +76,7 @@ const Contact = () => {
     },
   ];
 
-  const handleFormSubmit = (data: any) => {
+  const handleFormSubmit = async (data: any) => {
     console.log("Inquiry submitted:", data);
     // Here you would typically send the data to your backend
     alert("Thank you for your inquiry! We'll get back to you within 24 hours.");

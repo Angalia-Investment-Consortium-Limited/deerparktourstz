@@ -4,24 +4,34 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Badge } from "@/components/ui/badge";
 import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import { format } from "date-fns";
 import { cn } from "@/lib/utils";
-import { 
-  CalendarIcon, 
-  Users, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  CalendarIcon,
+  Users,
+  Mail,
+  Phone,
+  MapPin,
   Heart,
   DollarSign,
   Crown,
   Briefcase,
-  Send
+  Send,
 } from "lucide-react";
 
 interface InquiryFormProps {
@@ -30,7 +40,11 @@ interface InquiryFormProps {
   onSubmit?: (data: any) => void;
 }
 
-const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormProps) => {
+const InquiryForm = ({
+  userType = "family",
+  packageId,
+  onSubmit,
+}: InquiryFormProps) => {
   const [formData, setFormData] = useState({
     // Basic Info
     firstName: "",
@@ -38,27 +52,27 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
     email: "",
     phone: "",
     country: "",
-    
+
     // Trip Details
     travelDate: undefined as Date | undefined,
     duration: "",
     groupSize: "",
     budget: "",
-    
+
     // Preferences
     accommodationType: "",
     specialRequests: "",
     dietaryRestrictions: "",
-    
+
     // User-type specific
     ageGroup: "", // for budget
     occasion: "", // for luxury
     businessName: "", // for agents
     experienceLevel: "",
-    
+
     // Additional
     hearAboutUs: "",
-    newsletter: false
+    newsletter: false,
   });
 
   const userTypeConfigs = {
@@ -67,33 +81,68 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
       subtitle: "Let's plan an amazing adventure within your budget",
       icon: DollarSign,
       color: "tertiary",
-      budgetOptions: ["Under $1,000", "$1,000-$2,000", "$2,000-$3,000", "Flexible"],
-      accommodationOptions: ["Camping", "Basic Lodge", "Guesthouse", "Hostel"]
+      budgetOptions: [
+        "Under $1,000",
+        "$1,000-$2,000",
+        "$2,000-$3,000",
+        "Flexible",
+      ],
+      accommodationOptions: ["Camping", "Basic Lodge", "Guesthouse", "Hostel"],
     },
     family: {
-      title: "Family Safari Inquiry", 
+      title: "Family Safari Inquiry",
       subtitle: "Create unforgettable memories for the whole family",
       icon: Heart,
       color: "accent",
-      budgetOptions: ["$2,000-$4,000", "$4,000-$6,000", "$6,000-$8,000", "Premium Budget"],
-      accommodationOptions: ["Family Lodge", "Safari Camp", "Resort", "Private Villa"]
+      budgetOptions: [
+        "$2,000-$4,000",
+        "$4,000-$6,000",
+        "$6,000-$8,000",
+        "Premium Budget",
+      ],
+      accommodationOptions: [
+        "Family Lodge",
+        "Safari Camp",
+        "Resort",
+        "Private Villa",
+      ],
     },
     luxury: {
       title: "Luxury Safari Inquiry",
       subtitle: "Experience Tanzania in ultimate comfort and style",
       icon: Crown,
-      color: "primary", 
-      budgetOptions: ["$5,000-$8,000", "$8,000-$12,000", "$12,000+", "No Budget Limit"],
-      accommodationOptions: ["Luxury Lodge", "Tented Camp", "Private Estate", "Exclusive Resort"]
+      color: "primary",
+      budgetOptions: [
+        "$5,000-$8,000",
+        "$8,000-$12,000",
+        "$12,000+",
+        "No Budget Limit",
+      ],
+      accommodationOptions: [
+        "Luxury Lodge",
+        "Tented Camp",
+        "Private Estate",
+        "Exclusive Resort",
+      ],
     },
     agents: {
       title: "Travel Agent Partnership",
       subtitle: "Professional packages with exclusive agent rates",
       icon: Briefcase,
       color: "accent",
-      budgetOptions: ["Group Rates", "Premium Packages", "Custom Pricing", "Volume Discounts"],
-      accommodationOptions: ["Various Options", "Client Choice", "Tiered Packages", "Custom Selection"]
-    }
+      budgetOptions: [
+        "Group Rates",
+        "Premium Packages",
+        "Custom Pricing",
+        "Volume Discounts",
+      ],
+      accommodationOptions: [
+        "Various Options",
+        "Client Choice",
+        "Tiered Packages",
+        "Custom Selection",
+      ],
+    },
   };
 
   const config = userTypeConfigs[userType];
@@ -106,13 +155,15 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
   };
 
   const updateFormData = (field: string, value: any) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   return (
     <Card className="max-w-2xl mx-auto shadow-card-custom">
       <CardHeader className="text-center">
-        <div className={`w-16 h-16 mx-auto mb-4 rounded-full bg-${config.color}/10 flex items-center justify-center`}>
+        <div
+          className={`w-16 h-16 mx-auto mb-4 rounded-full bg-${config.color}/10 flex items-center justify-center`}
+        >
           <IconComponent className={`h-8 w-8 text-${config.color}`} />
         </div>
         <CardTitle className="text-2xl font-bold">{config.title}</CardTitle>
@@ -123,8 +174,10 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* Personal Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold border-b pb-2">Personal Information</h3>
-            
+            <h3 className="text-lg font-semibold border-b pb-2">
+              Personal Information
+            </h3>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label htmlFor="firstName">First Name *</Label>
@@ -194,12 +247,16 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
             {userType === "budget" && (
               <div>
                 <Label htmlFor="ageGroup">Age Group</Label>
-                <Select onValueChange={(value) => updateFormData("ageGroup", value)}>
+                <Select
+                  onValueChange={(value) => updateFormData("ageGroup", value)}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select your age group" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="18-25">18-25 (Student/Young Traveler)</SelectItem>
+                    <SelectItem value="18-25">
+                      18-25 (Student/Young Traveler)
+                    </SelectItem>
                     <SelectItem value="26-35">26-35</SelectItem>
                     <SelectItem value="36-50">36-50</SelectItem>
                     <SelectItem value="50+">50+</SelectItem>
@@ -211,14 +268,18 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
             {userType === "luxury" && (
               <div>
                 <Label htmlFor="occasion">Special Occasion</Label>
-                <Select onValueChange={(value) => updateFormData("occasion", value)}>
+                <Select
+                  onValueChange={(value) => updateFormData("occasion", value)}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="What's the occasion?" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="honeymoon">Honeymoon</SelectItem>
                     <SelectItem value="anniversary">Anniversary</SelectItem>
-                    <SelectItem value="birthday">Birthday Celebration</SelectItem>
+                    <SelectItem value="birthday">
+                      Birthday Celebration
+                    </SelectItem>
                     <SelectItem value="retirement">Retirement Trip</SelectItem>
                     <SelectItem value="leisure">Luxury Leisure</SelectItem>
                   </SelectContent>
@@ -232,7 +293,9 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
                 <Input
                   id="businessName"
                   value={formData.businessName}
-                  onChange={(e) => updateFormData("businessName", e.target.value)}
+                  onChange={(e) =>
+                    updateFormData("businessName", e.target.value)
+                  }
                   placeholder="Your travel agency name"
                   required={userType === "agents"}
                 />
@@ -242,8 +305,10 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
 
           {/* Trip Details */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold border-b pb-2">Trip Details</h3>
-            
+            <h3 className="text-lg font-semibold border-b pb-2">
+              Trip Details
+            </h3>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <Label>Preferred Travel Date</Label>
@@ -257,7 +322,9 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
-                      {formData.travelDate ? format(formData.travelDate, "PPP") : "Select date"}
+                      {formData.travelDate
+                        ? format(formData.travelDate, "PPP")
+                        : "Select date"}
                     </Button>
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0" align="start">
@@ -274,7 +341,9 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
 
               <div>
                 <Label htmlFor="duration">Trip Duration</Label>
-                <Select onValueChange={(value) => updateFormData("duration", value)}>
+                <Select
+                  onValueChange={(value) => updateFormData("duration", value)}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="How long?" />
                   </SelectTrigger>
@@ -294,16 +363,26 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
                 <Label htmlFor="groupSize">Group Size</Label>
                 <div className="relative">
                   <Users className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                  <Select onValueChange={(value) => updateFormData("groupSize", value)}>
+                  <Select
+                    onValueChange={(value) =>
+                      updateFormData("groupSize", value)
+                    }
+                  >
                     <SelectTrigger className="pl-10">
                       <SelectValue placeholder="Number of travelers" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="1">Just me (1 person)</SelectItem>
                       <SelectItem value="2">Couple (2 people)</SelectItem>
-                      <SelectItem value="3-4">Small group (3-4 people)</SelectItem>
-                      <SelectItem value="5-8">Medium group (5-8 people)</SelectItem>
-                      <SelectItem value="9+">Large group (9+ people)</SelectItem>
+                      <SelectItem value="3-4">
+                        Small group (3-4 people)
+                      </SelectItem>
+                      <SelectItem value="5-8">
+                        Medium group (5-8 people)
+                      </SelectItem>
+                      <SelectItem value="9+">
+                        Large group (9+ people)
+                      </SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -311,13 +390,17 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
 
               <div>
                 <Label htmlFor="budget">Budget Range (per person)</Label>
-                <Select onValueChange={(value) => updateFormData("budget", value)}>
+                <Select
+                  onValueChange={(value) => updateFormData("budget", value)}
+                >
                   <SelectTrigger>
                     <SelectValue placeholder="Select budget range" />
                   </SelectTrigger>
                   <SelectContent>
                     {config.budgetOptions.map((option) => (
-                      <SelectItem key={option} value={option}>{option}</SelectItem>
+                      <SelectItem key={option} value={option}>
+                        {option}
+                      </SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
@@ -328,16 +411,24 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
           {/* Preferences */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold border-b pb-2">Preferences</h3>
-            
+
             <div>
-              <Label htmlFor="accommodationType">Accommodation Preference</Label>
-              <Select onValueChange={(value) => updateFormData("accommodationType", value)}>
+              <Label htmlFor="accommodationType">
+                Accommodation Preference
+              </Label>
+              <Select
+                onValueChange={(value) =>
+                  updateFormData("accommodationType", value)
+                }
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select accommodation type" />
                 </SelectTrigger>
                 <SelectContent>
                   {config.accommodationOptions.map((option) => (
-                    <SelectItem key={option} value={option}>{option}</SelectItem>
+                    <SelectItem key={option} value={option}>
+                      {option}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
@@ -345,14 +436,22 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
 
             <div>
               <Label htmlFor="experienceLevel">Safari Experience Level</Label>
-              <Select onValueChange={(value) => updateFormData("experienceLevel", value)}>
+              <Select
+                onValueChange={(value) =>
+                  updateFormData("experienceLevel", value)
+                }
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Your safari experience" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="first-time">First-time safari goer</SelectItem>
+                  <SelectItem value="first-time">
+                    First-time safari goer
+                  </SelectItem>
                   <SelectItem value="some">Some safari experience</SelectItem>
-                  <SelectItem value="experienced">Experienced traveler</SelectItem>
+                  <SelectItem value="experienced">
+                    Experienced traveler
+                  </SelectItem>
                   <SelectItem value="expert">Safari expert</SelectItem>
                 </SelectContent>
               </Select>
@@ -363,20 +462,26 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
               <Input
                 id="dietaryRestrictions"
                 value={formData.dietaryRestrictions}
-                onChange={(e) => updateFormData("dietaryRestrictions", e.target.value)}
+                onChange={(e) =>
+                  updateFormData("dietaryRestrictions", e.target.value)
+                }
                 placeholder="Vegetarian, allergies, etc."
               />
             </div>
 
             <div>
-              <Label htmlFor="specialRequests">Special Requests or Questions</Label>
+              <Label htmlFor="specialRequests">
+                Special Requests or Questions
+              </Label>
               <Textarea
                 id="specialRequests"
                 rows={4}
                 value={formData.specialRequests}
-                onChange={(e) => updateFormData("specialRequests", e.target.value)}
+                onChange={(e) =>
+                  updateFormData("specialRequests", e.target.value)
+                }
                 placeholder={
-                  userType === "luxury" 
+                  userType === "luxury"
                     ? "Private dining, helicopter transfers, exclusive experiences..."
                     : userType === "budget"
                     ? "Group discounts, student rates, flexible itinerary..."
@@ -390,18 +495,24 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
 
           {/* Additional Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold border-b pb-2">Additional Information</h3>
-            
+            <h3 className="text-lg font-semibold border-b pb-2">
+              Additional Information
+            </h3>
+
             <div>
               <Label htmlFor="hearAboutUs">How did you hear about us?</Label>
-              <Select onValueChange={(value) => updateFormData("hearAboutUs", value)}>
+              <Select
+                onValueChange={(value) => updateFormData("hearAboutUs", value)}
+              >
                 <SelectTrigger>
                   <SelectValue placeholder="Select source" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="google">Google Search</SelectItem>
                   <SelectItem value="social">Social Media</SelectItem>
-                  <SelectItem value="referral">Friend/Family Referral</SelectItem>
+                  <SelectItem value="referral">
+                    Friend/Family Referral
+                  </SelectItem>
                   <SelectItem value="agent">Travel Agent</SelectItem>
                   <SelectItem value="review">Review Sites</SelectItem>
                   <SelectItem value="other">Other</SelectItem>
@@ -413,7 +524,9 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
               <Checkbox
                 id="newsletter"
                 checked={formData.newsletter}
-                onCheckedChange={(checked) => updateFormData("newsletter", checked)}
+                onCheckedChange={(checked) =>
+                  updateFormData("newsletter", checked)
+                }
               />
               <Label htmlFor="newsletter" className="text-sm">
                 Subscribe to our newsletter for exclusive offers and travel tips
@@ -422,17 +535,20 @@ const InquiryForm = ({ userType = "family", packageId, onSubmit }: InquiryFormPr
           </div>
 
           {/* Submit Button */}
-          <Button 
-            type="submit" 
-            size="lg" 
+          <Button
+            type="submit"
+            size="lg"
             className={`w-full bg-${config.color} hover:bg-${config.color}/90 transition-colors`}
           >
             <Send className="mr-2 h-4 w-4" />
-            {userType === "agents" ? "Request Partnership Info" : "Send Inquiry"}
+            {userType === "agents"
+              ? "Request Partnership Info"
+              : "Send Inquiry"}
           </Button>
 
           <p className="text-xs text-muted-foreground text-center">
-            We'll respond within 24 hours with a personalized quote and itinerary.
+            We'll respond within 24 hours with a personalized quote and
+            itinerary.
           </p>
         </form>
       </CardContent>

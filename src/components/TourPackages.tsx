@@ -366,7 +366,9 @@ const TourPackages = () => {
                     onClick={() => {
                       // Navigate to contact page with pre-selected user type and package
                       // window.location.href = `/contact?userType=${selectedUserType}&package=${pkg.id}`;
-                      navigate("/contact");
+                      navigate(
+                        `/contact?userType=${selectedUserType}&package=${pkg.id}`
+                      );
                     }}
                   >
                     {selectedUserType === "agents"

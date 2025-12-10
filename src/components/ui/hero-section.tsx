@@ -35,9 +35,9 @@ const HeroSection = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
         <div className="max-w-4xl mx-auto space-y-6 md:space-y-8">
-          <h1 className="heading-display my-16 text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-tight animate-fade-in">
+          <h1 className="heading-display my-24 text-3xl sm:text-4xl md:text-6xl lg:text-7xl leading-tight animate-fade-in">
             Discover the
-            <span className="block text-primary-glow gentle-float inline-block mt-2">
+            <span className="text-primary-glow gentle-float inline-block mt-2">
               Heart of Tanzania
             </span>
           </h1>

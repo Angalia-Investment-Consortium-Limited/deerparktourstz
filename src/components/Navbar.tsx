@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Logo from "@/components/ui/logo";
+import deerparklogo from "../../public/lovable-uploads/DeerParkLogo.png";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,17 +42,16 @@ const Navbar = () => {
 
       {/* Main navigation */}
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-20 py-2">
+        <div className="flex items-center justify-between h-32 py-4">
           {/* Logo */}
           <Link
             to="/"
             className="flex items-center hover:opacity-90 transition-all duration-300 hover:scale-105"
           >
-            <Logo
-              variant="icon"
-              size="xl"
-              showText={false}
-              className="w-32 h-32 md:w-36 md:h-36 drop-shadow-xl filter contrast-125 brightness-110"
+            <img
+              src={deerparklogo}
+              alt="deerpark logo"
+              className="h-28 w-28 transition-transform duration-300 hover:scale-105"
             />
           </Link>
 
